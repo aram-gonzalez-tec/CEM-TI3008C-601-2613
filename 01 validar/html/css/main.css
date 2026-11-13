@@ -1,0 +1,10 @@
+.encabezado {
+    background-color: aqua;
+}
+
+.texto_rojo {
+    font-size: xx-large;
+    font-weight: bolder;
+    color: red;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

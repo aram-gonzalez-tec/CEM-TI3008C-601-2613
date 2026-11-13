@@ -1,0 +1,186 @@
+/* Dash carga automáticamente todos los archivos .css de la carpeta assets/ */
+
+:root {
+  --color-principal: #1a63a9;
+  --color-principal-oscuro: #154f87;
+  --color-texto: #1d2733;
+  --color-secundario: #5b6875;
+  --color-fondo: #f4f6f8;
+  --color-superficie: #ffffff;
+  --color-borde: #d5dce3;
+  --radio: 10px;
+
+  /* Color de los controles de Dash (slider, casillas, opciones, calendario) */
+  --Dash-Fill-Interactive-Strong: var(--color-principal);
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+/* ---------- Encabezado y pie ---------- */
+.encabezado {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 32px;
+  background: var(--color-texto);
+}
+.logo { margin: 0; color: #fff; font-weight: 700; font-size: 20px; }
+.nav { display: flex; flex-wrap: wrap; gap: 20px; }
+.nav-enlace { color: #cfd8e1; text-decoration: none; font-weight: 600; }
+.nav-enlace:hover { color: #fff; }
+.nav-enlace-activo { color: #fff; border-bottom: 2px solid #fff; padding-bottom: 2px; }
+
+.pie { padding: 20px 32px; color: var(--color-secundario); font-size: 14px; }
+.pie-texto { margin: 0; }
+
+/* ---------- Estructura ---------- */
+.contenido { max-width: 1200px; margin: 0 auto; padding: 24px 32px; }
+.titulo-pagina { margin: 0 0 20px; font-size: 28px; }
+.subtitulo { margin: 0 0 12px; font-size: 17px; }
+.texto-grande { font-size: 18px; color: var(--color-secundario); margin: 0; }
+
+.tarjeta {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.dos-columnas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.tres-columnas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+
+/* ---------- Inicio ---------- */
+.hero { padding: 40px 0 32px; }
+.acceso { display: block; text-decoration: none; color: var(--color-texto); }
+.acceso:hover { border-color: var(--color-principal); }
+
+/* ---------- Tablero ---------- */
+.filtros { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 16px; }
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-bottom: 16px; }
+.kpi {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: 16px 20px;
+}
+.kpi-etiqueta { margin: 0; color: var(--color-secundario); font-size: 14px; }
+.kpi-valor { margin: 6px 0 0; font-size: 28px; font-weight: 700; }
+
+/* ---------- Formularios ---------- */
+.formulario-y-resultado { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; align-items: start; }
+.campo { margin-bottom: 18px; }
+.etiqueta { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+.ayuda { margin: 4px 0 0; font-size: 13px; color: var(--color-secundario); }
+
+/* Solo para dcc.Textarea: los demás controles de Dash ya traen su estilo */
+.control {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 9px 12px;
+  border: 1px solid #b7c2cc;
+  border-radius: 6px;
+  font: inherit;
+}
+.control:focus { outline: 2px solid var(--color-principal); outline-offset: 1px; }
+
+.opciones label { margin-right: 20px; }
+.opciones input { margin-right: 6px; }
+
+.boton {
+  padding: 11px 20px;
+  background: var(--color-principal);
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.boton:hover { background: var(--color-principal-oscuro); }
+
+.resultado-valor { margin: 4px 0 16px; font-size: 32px; font-weight: 700; color: var(--color-principal); }
+
+/* ---------- Asistente flotante ---------- */
+.chat-flotante {
+  position: fixed;          /* se queda en su lugar aunque la página se desplace */
+  right: 24px;
+  bottom: 80px;            /* deja libre el menú de Dash, que en modo debug está abajo
+                             a la derecha; sin debug se puede bajar a 24px */
+  z-index: 1000;            /* por encima del resto de la página */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;     /* alineados a la derecha */
+  gap: 12px;
+}
+.chat-boton {
+  padding: 12px 18px;
+  background: var(--color-principal);
+  color: #fff;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+.chat-boton:hover { background: var(--color-principal-oscuro); }
+
+.chat-panel {
+  display: none;            /* oculta hasta que el callback agrega chat-panel-abierto */
+  flex-direction: column;
+  width: 360px;
+  height: 480px;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+.chat-panel-abierto { display: flex; }
+
+.chat-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--color-texto);
+  color: #fff;
+}
+.chat-titulo { margin: 0; font-weight: 700; }
+.chat-cerrar { background: none; border: 0; color: #fff; font-size: 24px; line-height: 1; cursor: pointer; }
+
+/* Contenedor de dcc.Loading (parent_className): ocupa el espacio libre del panel */
+.chat-cuerpo { flex: 1; min-height: 0; height: 100%; }
+.chat-historial {
+  height: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column-reverse;   /* el mensaje más reciente queda abajo */
+  gap: 10px;
+  padding: 14px;
+}
+.mensaje { max-width: 80%; padding: 9px 13px; border-radius: 12px; line-height: 1.4; font-size: 15px; }
+.mensaje-usuario { align-self: flex-end; background: var(--color-principal); color: #fff; }
+.mensaje-asistente { align-self: flex-start; background: #e8eef4; }
+
+.chat-barra { display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--color-borde); }
+.chat-entrada { flex: 1; }   /* el campo de texto ocupa el espacio libre */
+
+/* ---------- Pantallas pequeñas ---------- */
+@media (max-width: 900px) {
+  .chat-flotante { right: 12px; bottom: 72px; }
+  .chat-panel { width: calc(100vw - 24px); height: 70vh; }
+  .contenido { padding: 16px; }
+  .encabezado { padding: 14px 16px; }
+  .dos-columnas, .tres-columnas, .filtros, .formulario-y-resultado { grid-template-columns: 1fr; }
+  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

@@ -1,0 +1,14 @@
+[project]
+name = "estudiantes-app"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "dash==4.4.1",
+    "dash-ag-grid>=35.3.0",
+    "google-genai>=3.3.0",
+    "pandas>=3.1.1",
+    "psycopg[binary]>=3.3.9",
+    "python-dotenv>=1.2.4",
+    "scikit-learn>=1.9.1",
+    "sqlalchemy>=2.1.8",
+]
